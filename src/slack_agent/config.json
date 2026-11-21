@@ -1,0 +1,46 @@
+{
+    "model": "qwen3.5:4b",
+    "temperature": 0,
+    "reasoning": false,
+    "max_failed_checks": 3,
+    "dataset": {
+        "name": "cornell-movie-review-data/rotten_tomatoes",
+        "split": "validation",
+        "text_field": "text",
+        "label_field": "label",
+        "example_count": 2,
+        "example_length": 90
+    },
+    "slack": {
+        "bot_token_envs": ["SLACK_BOT_TOKEN", "SLACK_CLI_XOXB"],
+        "app_token_envs": ["SLACK_APP_TOKEN", "SLACK_CLI_XAPP"],
+        "history_limit": 10
+    },
+    "messages": {
+        "thinking": ":hourglass_flowing_sand: Thinking...",
+        "calling": ":hourglass_flowing_sand: Calling `{tool}`...",
+        "no_response": "No response.",
+        "error": ":warning: Something went wrong.",
+        "tools_used": "Tools used:",
+        "self_check": "Self-check:",
+        "giving_up": "Giving up after {failures} failed checks."
+    },
+    "checks": {
+        "passed": "Self-check passed: the message is in the channel and matches the request or the dataset.",
+        "slack_error": "Self-check failed: Slack error {error}.",
+        "not_in_channel": "Self-check failed: the message is not in the channel. Post it again.",
+        "deleted": "Self-check failed: {problem}. I deleted the message; post a corrected one.",
+        "hint": "analyze a word from the user request (\"{request}\")",
+        "keyword_not_in_request": "\"{keyword}\" is not in the request; {hint}",
+        "no_matches": "no reviews match \"{keyword}\"; {hint}",
+        "keyword_not_mentioned": "it never mentions \"{keyword}\"",
+        "missing_positive": "it does not state the positive share ({positive})",
+        "wrong_percent": "it states {wrong}, but the dataset says {positive} positive and {negative} negative",
+        "missing_count": "it does not state the review count ({count})",
+        "unsourced_statistics": "it states review statistics that are neither in the user request nor from analyze_reviews; run it on a word from the request (\"{request}\")"
+    },
+    "markers": {
+        "passed": ":white_check_mark:",
+        "failed": ":x:"
+    }
+}

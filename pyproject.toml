@@ -1,0 +1,32 @@
+[project]
+name = "slack-agent"
+version = "0.1.0"
+description = "Slack bot that answers questions about movie reviews using a local Ollama model"
+readme = "README.md"
+authors = [
+    { name = "sjakubicz", email = "sjakubicz@gmail.com" }
+]
+requires-python = ">=3.15"
+dependencies = [
+    "datasets>=5.2.0",
+    "dotenv>=0.9.9",
+    "langchain>=1.5.2",
+    "langchain-ollama>=1.1.0",
+    "langgraph>=1.2.24",
+    "ollama>=0.6.3",
+    "pydantic>=2.14.4",
+    "slack-bolt>=1.30.0",
+    "slack-cli-hooks<1.0.0",
+]
+
+[project.scripts]
+slack-agent = "slack_agent:main"
+
+[build-system]
+requires = ["uv_build>=0.13.9,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+]
